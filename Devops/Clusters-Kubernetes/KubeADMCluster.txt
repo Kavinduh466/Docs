@@ -1,0 +1,81 @@
+
+########### How to up the cluster using kubeadm ############
+
+
+
+first off swap files temporaly 
+                    sudo swapoff -a
+
+then verify kubeadm,kubectl,docker if not download with required packages 
+
+        docker --version
+        kubeadm version && kubectl version --client
+
+setup kubernetes cluster
+
+
+    get ip address
+        ip addr show
+
+
+    initalize cluster 
+        sudo kubeadm init --apiserver-advertise-address=<YOUR-IP> --pod-network-cidr=192.168.0.0/16
+                   
+                    Description:
+                    <YOUR-IP> = 192.168.1.100 ip is this then use cidr to range pods that can scale up 
+                    so 16 , 2^16 = 65536   that range specify in the cidr 
+
+        setup kubeconfig on master node
+
+            mkdir -p $HOME/.kube
+            sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+            sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+        check cluster status 
+
+            kubectl get nodes
+            
+            Description:
+            Want to have network plugins 
+
+        Install Calico 
+           
+           kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+        Check All Pods are runing
+
+            kubectl get pods -n kube-system
+
+        Check Node Status 
+
+            kubectl get nodes
+
+        Join worker nodes
+
+            get token
+
+                kubeadm token create --print-join-command
+
+            access worker node 
+
+                ssh user@worker-node-ip
+
+            run join command on each worker node
+
+                sudo kubeadm join <MASTER-IP>:6443 --token <TOKEN> --discovery-token-ca-cert-hash sha256:<HASH>
+
+            check all nodes worke
+
+                kubectl get nodes
+
+            deploy test pod
+
+                kubectl run nginx --image=nginx
+
+            check the current running pods 
+
+                kubectl port-forward pod/nginx 8080:80
+
+
+
+
