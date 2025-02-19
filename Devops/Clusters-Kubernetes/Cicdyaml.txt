@@ -1,0 +1,83 @@
+want to make file using this github identifies this is CI/CD 
+
+name: Python CI/CD
+
+
+github event that will trigger workflow  in here this will push the code to main 
+and any branches starts from feature/   also can make pull request also 
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*'
+
+
+collection of steps that executed in same runner
+
+jobs:
+  test:
+    runs-on: ubuntu-latest      #jobs runs on this environment 
+    steps:
+      - name: Checkout code      #actions that checks the code from repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Python    # used to setup specific version of python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          
+      - name: Install dependencies       
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Run tests
+        run: |
+          pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Deploy to production
+        run: ./deploy_prod.sh
+
+
+
+additional commands 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]     # versions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}     #make sure work flow works 
+                                                       on every versions
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+
+
+
+different environment checks 
+
+jobs:
+  build:
+    runs-on: ${{matrix.os}}
+    permissions:
+      contents: write
+      security-events: write
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
