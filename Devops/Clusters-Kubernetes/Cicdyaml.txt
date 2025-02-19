@@ -55,7 +55,7 @@ jobs:
         node-version: [14, 16, 18]     # versions
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2   
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:

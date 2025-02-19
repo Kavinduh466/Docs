@@ -1,0 +1,26 @@
+First create dockerfile 
+        Needs to create Dockerfile before creating  it needs the understanding of the project
+        what are the versions, dependencies use
+
+Inside root directory needs to create docker image
+
+After create the docker file build the project
+    mvn package
+        
+Then needs to chekc target folder exist
+    ls target/
+
+Target folder needs to have this 
+    app-1.0.0.jar
+
+Build the Docker Image 
+    docker build -t cicd:latest .
+    docker build -t nameoftheimage : version
+
+Run the container 
+    docker run -p 8080:8080 cicd
+
+Push to the docker hub / linux users dont needs to do that 
+    docker tag cicd kavindudevops/cicd:latest
+    docker push kavindudevops/cicd:latest
+
