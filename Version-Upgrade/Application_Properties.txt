@@ -1,0 +1,17 @@
+------------ Application Properties Changes ----------------
+
+lets say latest version that come is 3.4.0 and old version is 3.3.0
+
+1. Looks all application.Properties files 
+
+
+2. Get diffchecker and application.Properties file of 
+    new version to original and add old version to changed text 
+
+3. Then change the keys in the old version by looking the new version.
+   Old version keys needs to be similar to new version
+
+4. Remove keys in the old version that are not in the new version
+
+5. Add some values that are in the new version file to old version mostly jwt validation url
+
