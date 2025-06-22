@@ -1,0 +1,34 @@
+----- import those libararies ---------
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+
+------ read the csv or data file -------------
+df = pd.read_csv("File_Name.csv")
+df
+
+----- matplot lib adds and x and y axis ---------
+%matplotlib inline
+plt.xlabel('Year')                  ------ X value needs to shows ---------
+plt.ylabel('Average_Coca_Cola_Price_USD')   ------ Y value needs to shows ---------
+plt.scatter(df.Year, df.Average_KO_Stock_Price_USD, color='red', marker='+')  -- real x and y axis values in csv ------
+
+------ linear regression object creation ---------
+reg = linear_model.LinearRegression()        
+reg.fit(df[['Year']], df.Average_KO_Stock_Price_USD )   // fit the key and value for reg object
+
+------ 
+reg.predict([[2030]])   // predict for some key and gives value
+
+reg.coef_
+reg.intercept_
+
+d = pd.read_csv("years.csv")     //  add pdf that have keys needs predict values
+d 
+
+predict = reg.predict(d)        // predict values for pdf
+d['Average_KO_Stock_Price_USD'] = predict  // add new columns in new pdf with predict values
+
+d.to_csv("Coca_Cola_Price_Prediction.csv",index=False) // download new csv 
