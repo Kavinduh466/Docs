@@ -18,7 +18,7 @@ plt.scatter(df.Year, df.Average_KO_Stock_Price_USD, color='red', marker='+')  --
 ------ linear regression object creation ---------
 reg = linear_model.LinearRegression()        
 reg.fit(df[['Year']], df.Average_KO_Stock_Price_USD )   // fit the key and value for reg object
-
+                ----- Year is an independent variable and price wants for each year
 ------ 
 reg.predict([[2030]])   // predict for some key and gives value
 
