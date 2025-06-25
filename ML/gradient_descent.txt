@@ -1,0 +1,88 @@
+Gradient Descent for Linear Regression – Theory and Code Explanation
+=====================================================================
+
+🚀 THEORY OVERVIEW:
+
+Linear Regression:
+------------------
+Linear regression is a supervised learning algorithm used to model the relationship between a dependent variable (y) and one or more independent variables (x). The goal is to fit a straight line (y = mx + c) to the data points such that the error between predicted and actual y-values is minimized.
+
+Gradient Descent:
+-----------------
+Gradient descent is an optimization algorithm used to minimize a function by iteratively moving towards the minimum value of the function. In machine learning, it is used to minimize the cost/loss function.
+
+In the context of linear regression, we use gradient descent to find the best values of m (slope) and c (intercept) that minimize the Mean Squared Error (MSE).
+
+
+📘 CODE EXPLANATION:
+
+import numpy as np
+-------------------
+- Imports the NumPy library for efficient array operations.
+
+def gradient_descent(x, y):
+---------------------------
+- Defines a function to perform gradient descent on the dataset (x, y).
+
+m_curr = c_curr = 0
+--------------------
+- Initializes the slope (m) and intercept (c) to 0.
+
+iterations = 10000
+-------------------
+- Sets how many times to run the optimization loop.
+
+n = len(x)
+----------
+- Stores the number of data points.
+
+learning_rate = 0.001
+----------------------
+- Controls how large each step is during parameter update.
+
+for i in range(iterations):
+----------------------------
+- Repeats the process for 10,000 iterations to minimize the error.
+
+y_predicted = m_curr * x + c_curr
+----------------------------------
+- Calculates predicted y-values using current m and c.
+
+cost = (1/n) * sum([val ** 2 for val in (y - y_predicted)])
+-------------------------------------------------------------
+- Calculates the Mean Squared Error (MSE) – how far predictions are from actual y-values.
+
+md = -(2/n) * sum(x * (y - y_predicted))
+----------------------------------------
+- Computes the gradient (slope) of the cost function w.r.t. m.
+
+cd = -(2/n) * sum(y - y_predicted)
+----------------------------------
+- Computes the gradient of the cost function w.r.t. c.
+
+m_curr = m_curr - learning_rate * md
+-------------------------------------
+- Updates the slope (m) by moving in the direction that reduces cost.
+
+c_curr = c_curr - learning_rate * cd
+-------------------------------------
+- Updates the intercept (c) similarly.
+
+print(...)
+---------
+- Displays the values of m, c, cost, and iteration during training.
+
+
+📊 Dataset Used:
+----------------
+x = [1, 2, 3, 4, 5]
+y = [5, 7, 9, 11, 13]
+
+This is a perfect linear relationship: y = 2x + 3
+
+✅ Final result after many iterations should approach m ≈ 2 and c ≈ 3
+
+
+Conclusion:
+-----------
+This code demonstrates how linear regression works from scratch using gradient descent. It’s a fundamental building block in machine learning and helps in understanding optimization behind many models.
