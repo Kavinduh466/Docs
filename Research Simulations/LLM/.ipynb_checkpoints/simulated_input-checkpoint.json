@@ -1,0 +1,11 @@
+{
+  "component_type": "Login Button",
+  "guideline_violations": [
+    "Color contrast is 2.1:1, which fails WCAG AA standards.",
+    "Click target size is 30px high, which is too small for mobile."
+  ],
+  "similarity_score": 0.45,
+  "interaction_issues": [
+    "Users hesitated for an average of 4 seconds before clicking this button."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "component_type": "Confirmation Button",
+  "guideline_violations": [],
+  "similarity_score": 0.95,
+  "interaction_issues": [
+    "Users clicked this button instantly with no hesitation."
+  ]
+}
