@@ -1,8 +1,8 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:5000";
+const API_BASE ="/api";
 
 export async function getLocations() {
   const res = await fetch(`${API_BASE}/get_location_names`);
-  return res.json(); // returns { locations: [...] }
+  return res.json(); 
 }
 
 export async function getEstimatedPrice(formData) {

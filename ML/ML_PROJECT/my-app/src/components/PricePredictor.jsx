@@ -123,7 +123,6 @@ function PricePredictor() {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {/* Location */}
         <div>
           <label style={{ 
             display: 'block', 
@@ -156,7 +155,6 @@ function PricePredictor() {
           </select>
         </div>
 
-        {/* Total Sqft */}
         <div>
           <label style={{ 
             display: 'block', 
@@ -187,7 +185,6 @@ function PricePredictor() {
           />
         </div>
 
-        {/* BHK Selector */}
         <NumberSelector
           options={bhkOptions}
           value={bhk}
@@ -196,7 +193,6 @@ function PricePredictor() {
           color="linear-gradient(135deg, #3b82f6, #2563eb)"
         />
 
-        {/* Bath Selector */}
         <NumberSelector
           options={bathOptions}
           value={bath}
