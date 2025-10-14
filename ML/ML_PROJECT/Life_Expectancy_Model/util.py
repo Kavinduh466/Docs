@@ -40,7 +40,7 @@ def predict_life_expectancy(year, adult_mortality, infant_deaths, alcohol,
     if status_col in __data_columns:
         x[__data_columns.index(status_col)] = 1
 
-    # ✅ Predict using the trained model
+    #  Predict using the trained model
     return float(__model.predict([x])[0])
 
 
